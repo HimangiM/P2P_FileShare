@@ -7,7 +7,7 @@
 #### Open any random port. This will be reserved for the connection to the PC.
       Check the status of the ports using : sudo ufw status verbose
       Now, open any random port using : sudo ufw allow <port number>
-      Check the status again to see if your entered port number has opened (STATUS : ALLOW IN) is there.
+      Check the status again to see if your entered port number has opened (STATUS : ALLOW IN).
       
 #### Testing the opened port
       On your machine, type the command : netcat -l <opened port number>
