@@ -1,6 +1,6 @@
 # P2P_FileShare
 
-## Ping the Ubuntu PC you want to connect to using command : ping -c 4 <IP address of the other PC>
+#### Ping the Ubuntu PC you want to connect to using command : ping -c 4 <IP address of the other PC>
    This command will send 4 packets to the desired PC.
    
 ## Open any random port. This will be reserved for the connection to the PC.
