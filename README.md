@@ -8,4 +8,16 @@
       Check the status of the ports using : sudo ufw status verbose
       Now, open any random port using : sudo ufw allow <port number>
       Check the status again to see if your entered port number has opened (STATUS : ALLOW IN) is there.
+      
+#### Testing the opened port
+      On your machine, type the command : netcat -l <opened port number>
+      On the other machine, type the command : 
+      Output will be: telnet serverIP <opened port number>
+                      Trying <IP>...
+                      Connected to <IP>
+                      Escape character is '^]'.
+                      this is a test
+
+      Type CTRL+C to cancel the testing
+     
   
