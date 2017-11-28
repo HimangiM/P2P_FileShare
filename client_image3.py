@@ -41,11 +41,13 @@ def recvall(sock, msgLen):
 try:
 
     while(1):
-        print ("Enter GET to receive image from server")
+        print ("Enter GET,<image_name> to receive image from server")
         message2 = raw_input("Enter message:")
+        txt = message2.strip().split(",")
+        # Add if image exists or not
         sock.sendall(message2 + "\r\n")
 
-        if message2 == "GET":
+        if txt[0].strip() == "GET":
  
             # data = recvall(sock, 4096)
 
