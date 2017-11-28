@@ -4,7 +4,7 @@ from time import gmtime, strftime
 import sys
 from socket import *
 
-image = '1.png'
+# image = '1.png'
 
 HOST = '127.0.0.1'
 PORT = 6666
@@ -63,15 +63,15 @@ while True:
 
                     if data:
                         print 'Message:', data.strip("\r\n")
-                        txt = data.strip()
+                        txt = data.strip().split(",")
 
-                        if txt == 'GET':
+                        if txt[0].strip() == 'GET':
                             
-                            with open(image, 'rb') as f1:    
+                            with open(txt[1].strip(), 'rb') as f1:    
                                 file_size = len(f1.read())
                                 f1.seek(0)
 
-                            with open(image, 'rb') as fp:
+                            with open(txt[1].strip(), 'rb') as fp:
                                 image_data = fp.read()
 
                             msg = '%sEOIMG\r\n' % image_data
