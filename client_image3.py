@@ -57,7 +57,7 @@ try:
                 if not data:
                     break
                 amount_received += len(data)
-                print amount_received
+                print 'Amount received:', amount_received
 
                 txt = data.strip('\r\n')
 
@@ -66,11 +66,14 @@ try:
                     myfile.write(data)
                     myfile.close()
                     sock.sendall("DONE\r\n")
+                    message = sock.recv(4096)
+                    print 'Message:' + str(message)
+                    break
                 else:
                     myfile.write(data)
 
         else:
-
+            
             message = sock.recv(4096)
             print 'Message:' + str(message)
 
