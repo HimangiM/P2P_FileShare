@@ -6,8 +6,8 @@ from socket import *
 
 # image = '1.png'
 
-HOST = '127.0.0.1'
-PORT = 6666
+HOST = '0.0.0.0'
+PORT = 32849
 
 connected_clients_sockets = []
 
@@ -65,7 +65,21 @@ while True:
                         print 'Message:', data.strip("\r\n")
                         txt = data.strip().split(",")
 
-                        if txt[0].strip() == 'GET':
+                        if txt[0].strip() == 'TEXT':
+                            
+                            with open(txt[1].strip(), 'rb') as f1:    
+                                file_size = len(f1.read())
+                                f1.seek(0)
+
+                            with open(txt[1].strip(), 'rb') as fp:
+                                image_data = fp.read()
+
+                            msg = '%sEOTXT\r\n' % image_data
+                            # msg = str(file_size) + "," + str(image_data) + 'EOIMG\r\n'
+
+                            sock.sendall(msg)
+                        
+                        elif txt[0].strip() == 'IMAGE':
                             
                             with open(txt[1].strip(), 'rb') as f1:    
                                 file_size = len(f1.read())
@@ -75,6 +89,20 @@ while True:
                                 image_data = fp.read()
 
                             msg = '%sEOIMG\r\n' % image_data
+                            # msg = str(file_size) + "," + str(image_data) + 'EOIMG\r\n'
+
+                            sock.sendall(msg)
+
+                        elif txt[0].strip() == 'SOUND':
+                            
+                            with open(txt[1].strip(), 'rb') as f1:    
+                                file_size = len(f1.read())
+                                f1.seek(0)
+
+                            with open(txt[1].strip(), 'rb') as fp:
+                                sound_data = fp.read()
+
+                            msg = '%sEOSND\r\n' % sound_data
                             # msg = str(file_size) + "," + str(image_data) + 'EOIMG\r\n'
 
                             sock.sendall(msg)
@@ -89,3 +117,4 @@ while True:
                 continue
 
 server_socket.close()
+
